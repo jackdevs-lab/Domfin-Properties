@@ -57,110 +57,111 @@
             <a href="properties.html" class="btn">Properties</a>
             <a href="contact.html" class="btn">Enquire</a>
         </div>
-    </div>
-</section>
+    </div><br><br><br>
+    </section>
 
-    <section class="filter-section">
-    <h2 class="mb-3">Filter Properties</h2>
-    <form class="filter-form">
-        <div class="filter-group">
-            <label for="neighborhood">Neighborhood</label>
-            <select id="neighborhood" name="neighborhood">
-                <option value="">All Neighborhoods</option>
-                <option value="westlands">Westlands</option>
-                <option value="kilimani">Kilimani</option>
-                <option value="kileleshwa">Kileleshwa</option>
-                <option value="lavington">Lavington</option>
-                <option value="karen">Karen</option>
-                <option value="runda">Runda</option>
-            </select>
-        </div>
+    <section class="filter-section hero-filter">
+        <h2 class="mb-3">Filter Properties</h2>
+        <form class="filter-form">
+            <div class="filter-group">
+                <label for="neighborhood">Neighborhood</label>
+                <select id="neighborhood" name="neighborhood">
+                    <option value="">All Neighborhoods</option>
+                    <option value="westlands">Westlands</option>
+                    <option value="kilimani">Kilimani</option>
+                    <option value="kileleshwa">Kileleshwa</option>
+                    <option value="lavington">Lavington</option>
+                    <option value="karen">Karen</option>
+                    <option value="runda">Runda</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="bedrooms">Bedrooms</label>
+                <select id="bedrooms" name="bedrooms">
+                    <option value="">Any</option>
+                    <option value="1">1 Bedroom</option>
+                    <option value="2">2 Bedrooms</option>
+                    <option value="3">3 Bedrooms</option>
+                    <option value="4+">4+ Bedrooms</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="price">Price Range (KSh)</label>
+                <select id="price" name="price">
+                    <option value="">Any Price</option>
+                    <option value="0-5">Under 5M</option>
+                    <option value="5-10">5M - 10M</option>
+                    <option value="10-20">10M - 20M</option>
+                    <option value="20-50">20M - 50M</option>
+                    <option value="50-100">50M - 100M</option>
+                    <option value="100-1000">100M+</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="type">Property Type</label>
+                <select id="type" name="type">
+                    <option value="">Any Type</option>
+                    <option value="sale">For Sale</option>
+                    <option value="rent">For Rent</option>
+                </select>
+            </div>
+            
+            <div class="filter-group buttons-group">
+                <button type="submit" class="btn">
+                    <i class="fas fa-filter"></i> Apply Filters
+                </button>
+                <button type="button" class="btn btn-outline">
+                    <i class="fas fa-redo"></i> Reset
+                </button>
+            </div>
+        </form>
         
-        <div class="filter-group">
-            <label for="bedrooms">Bedrooms</label>
-            <select id="bedrooms" name="bedrooms">
-                <option value="">Any</option>
-                <option value="1">1 Bedroom</option>
-                <option value="2">2 Bedrooms</option>
-                <option value="3">3 Bedrooms</option>
-                <option value="4+">4+ Bedrooms</option>
-            </select>
-        </div>
-        
-        <div class="filter-group">
-            <label for="price">Price Range (KSh)</label>
-            <select id="price" name="price">
-                <option value="">Any Price</option>
-                <option value="0-5">Under 5M</option>
-                <option value="5-10">5M - 10M</option>
-                <option value="10-20">10M - 20M</option>
-                <option value="20-50">20M - 50M</option>
-                <option value="50-100">50M - 100M</option>
-                <option value="100-1000">100M+</option>
-            </select>
-        </div>
-        
-        <div class="filter-group">
-            <label for="type">Property Type</label>
-            <select id="type" name="type">
-                <option value="">Any Type</option>
-                <option value="sale">For Sale</option>
-                <option value="rent">For Rent</option>
-            </select>
-        </div>
-        
-        <div class="filter-group">
-            <button type="submit" class="btn">
-                <i class="fas fa-filter"></i> Apply Filters
+        <!-- Optional: Advanced filters toggle -->
+        <div class="filter-toggle">
+            <button type="button">
+                <i class="fas fa-chevron-down"></i> Show Advanced Filters
             </button>
-            <button type="button" class="btn btn-outline">
-                <i class="fas fa-redo"></i> Reset
-            </button>
-        </div>
-    </form>
-    
-    <!-- Optional: Advanced filters toggle -->
-    <div class="filter-toggle">
-        <button type="button">
-            <i class="fas fa-chevron-down"></i> Show Advanced Filters
-        </button>
-    </div>
-    
-    <!-- Optional: Advanced filters section (hidden by default) -->
-    <div class="advanced-filters">
-        <div class="filter-group">
-            <label for="bathrooms">Bathrooms</label>
-            <select id="bathrooms" name="bathrooms">
-                <option value="">Any</option>
-                <option value="1">1+</option>
-                <option value="2">2+</option>
-                <option value="3">3+</option>
-                <option value="4">4+</option>
-            </select>
         </div>
         
-        <div class="filter-group">
-            <label for="size">Min. Size (sqm)</label>
-            <select id="size" name="size">
-                <option value="">Any Size</option>
-                <option value="50">50+ sqm</option>
-                <option value="100">100+ sqm</option>
-                <option value="150">150+ sqm</option>
-                <option value="200">200+ sqm</option>
-            </select>
+        <!-- Optional: Advanced filters section (hidden by default) -->
+        <div class="advanced-filters" style="display: none;">
+            <div class="filter-group">
+                <label for="bathrooms">Bathrooms</label>
+                <select id="bathrooms" name="bathrooms">
+                    <option value="">Any</option>
+                    <option value="1">1+</option>
+                    <option value="2">2+</option>
+                    <option value="3">3+</option>
+                    <option value="4">4+</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="size">Min. Size (sqm)</label>
+                <select id="size" name="size">
+                    <option value="">Any Size</option>
+                    <option value="50">50+ sqm</option>
+                    <option value="100">100+ sqm</option>
+                    <option value="150">150+ sqm</option>
+                    <option value="200">200+ sqm</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="year">Year Built</label>
+                <select id="year" name="year">
+                    <option value="">Any Year</option>
+                    <option value="2020">2020+</option>
+                    <option value="2015">2015+</option>
+                    <option value="2010">2010+</option>
+                    <option value="2000">2000+</option>
+                </select>
+            </div>
         </div>
-        
-        <div class="filter-group">
-            <label for="year">Year Built</label>
-            <select id="year" name="year">
-                <option value="">Any Year</option>
-                <option value="2020">2020+</option>
-                <option value="2015">2015+</option>
-                <option value="2010">2010+</option>
-                <option value="2000">2000+</option>
-            </select>
-        </div>
-    </div>
+    </section>
 </section>
     
 
@@ -336,21 +337,21 @@
         <h2 class="mb-4">Popular Neighborhoods</h2>
         <div class="neighborhood-grid">
             <div class="neighborhood-card">
-                <img src="https://via.placeholder.com/400x300/007bff/ffffff?text=Westlands" alt="Westlands" loading="lazy">
+                <img src="images/pp8.jpeg" alt="Westlands" loading="lazy">
                 <div class="neighborhood-overlay">
                     <h3>Westlands</h3>
                     <p>Upscale commercial and residential hub</p>
                 </div>
             </div>
             <div class="neighborhood-card">
-                <img src="https://via.placeholder.com/400x300/28a745/ffffff?text=Kilimani" alt="Kilimani" loading="lazy">
+                <img src="images/pp9.jpeg" alt="Kilimani" loading="lazy">
                 <div class="neighborhood-overlay">
                     <h3>Kilimani</h3>
                     <p>Trendy apartments and vibrant lifestyle</p>
                 </div>
             </div>
             <div class="neighborhood-card">
-                <img src="https://via.placeholder.com/400x300/dc3545/ffffff?text=Kileleshwa" alt="Kileleshwa" loading="lazy">
+                <img src="images/pp10.jpeg" alt="Kileleshwa" loading="lazy">
                 <div class="neighborhood-overlay">
                     <h3>Kileleshwa</h3>
                     <p>Quiet luxury and spacious homes</p>
@@ -364,7 +365,7 @@
         <h2 class="mb-4">What's New & Trending</h2>
         <div class="blog-grid">
             <div class="blog-card">
-                <img src="https://via.placeholder.com/400x250/6f42c1/ffffff?text=Real+Estate+Trends" alt="Real Estate Trends" class="property-image" loading="lazy">
+                <img src="images/real.jpg" alt="Real Estate Trends" class="property-image" loading="lazy">
                 <div class="blog-content">
                     <h3>Nairobi Real Estate Market Trends 2024</h3>
                     <div class="blog-meta">
@@ -376,7 +377,7 @@
                 </div>
             </div>
             <div class="blog-card">
-                <img src="https://via.placeholder.com/400x250/20c997/ffffff?text=Home+Investment" alt="Home Investment" class="property-image" loading="lazy">
+                <img src="images/real2.webp" alt="Home Investment" class="property-image" loading="lazy">
                 <div class="blog-content">
                     <h3>Maximizing ROI on Property Investments</h3>
                     <div class="blog-meta">
@@ -388,7 +389,7 @@
                 </div>
             </div>
             <div class="blog-card">
-                <img src="https://via.placeholder.com/400x250/fd7e14/ffffff?text=Interior+Design" alt="Interior Design" class="property-image" loading="lazy">
+                <img src="images/real3.jpg" alt="Interior Design" class="property-image" loading="lazy">
                 <div class="blog-content">
                     <h3>Modern Interior Design for Nairobi Homes</h3>
                     <div class="blog-meta">
