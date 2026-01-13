@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import winston from 'winston';
 import AdminJS from 'adminjs';
+import { ComponentLoader } from 'adminjs';
 import AdminJSExpress from '@adminjs/express';
 import { Adapter, Database, Resource } from '@adminjs/sql';
 import dotenv from 'dotenv';
@@ -13,7 +14,8 @@ import inquiryRoutes from './routes/inquiryRoutes.js';
 import bcrypt from 'bcrypt';
 import cloudinary from 'cloudinary';
 import multer from 'multer';
-import { DropZone } from '@adminjs/design-system';  // Import DropZone directly
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 // Cloudinary config
 cloudinary.config({
@@ -24,11 +26,20 @@ cloudinary.config({
 
 dotenv.config();
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
 const logger = winston.createLogger({ transports: [new winston.transports.Console()] });
 
 app.use(cors());
 app.use(express.json());
+
+// Log all incoming requests for debugging
+app.use((req, res, next) => {
+  logger.info(`Incoming request: ${req.method} ${req.url}`);
+  next();
+});
 
 // Multer for file parsing in AdminJS
 const upload = multer({ storage: multer.memoryStorage() });
@@ -57,7 +68,11 @@ AdminJS.registerAdapter({ Database, Resource });
     logger.error('❌ SQL Adapter failed:', err.message);
   }
 
+  const componentLoader = new ComponentLoader();
+  componentLoader.add('DropZoneUpload', path.join(__dirname, 'components', 'DropZoneUpload.jsx'));
+
   const admin = new AdminJS({
+    componentLoader,
     resources: [
       // Users
       {
@@ -107,20 +122,23 @@ AdminJS.registerAdapter({ Database, Resource });
 
             // Custom upload with DropZone from design-system
             images_upload: {
-              type: 'mixed',  // mixed allows custom component
+              type: 'mixed',
               isArray: true,
               isVisible: { list: false, show: false, filter: false, edit: true },
               label: 'Upload Property Images (drag & drop or browse)',
               components: {
-                edit: AdminJS.ComponentLoader('DropZoneUpload', () => Promise.resolve(DropZone))
+                edit: 'DropZoneUpload'
               },
             },
           },
           actions: {
             new: {
-              before: async (request) => {
+              handler: async (request, res, context) => {
+                logger.info('New property handler started');
                 if (request.method === 'post' && request.payload) {
                   const payload = request.payload;
+
+                  logger.info('Payload received: ' + JSON.stringify(payload, null, 2));
 
                   // Fix empty numeric fields
                   ['price', 'latitude', 'longitude', 'year_built'].forEach(field => {
@@ -145,8 +163,10 @@ AdminJS.registerAdapter({ Database, Resource });
                   // Handle files (multer provides buffer)
                   let uploadedUrls = [];
                   if (request.files && request.files.length > 0) {
+                    logger.info('Files received: ' + request.files.length);
                     const imageFiles = request.files.filter(f => f.fieldname === 'images_upload');
                     for (const file of imageFiles) {
+                      logger.info('Uploading file: ' + file.originalname);
                       try {
                         const result = await new Promise((resolve, reject) => {
                           const stream = cloudinary.v2.uploader.upload_stream(
@@ -156,39 +176,57 @@ AdminJS.registerAdapter({ Database, Resource });
                           stream.end(file.buffer);
                         });
                         uploadedUrls.push(result.secure_url);
+                        logger.info('Uploaded: ' + result.secure_url);
                       } catch (err) {
-                        logger.error('Cloudinary upload failed:', err.message);
+                        logger.error('Cloudinary upload failed for ' + file.originalname + ': ' + err.message);
                       }
                     }
+                  } else {
+                    logger.info('No files received');
                   }
 
-                  // Insert property
+                  // Insert property (filter out custom fields like images_upload)
                   const fields = Object.keys(payload).filter(k => k !== 'images_upload');
                   const values = fields.map(k => payload[k]);
                   const placeholders = fields.map((_, i) => `$${i+1}`).join(', ');
                   const columns = fields.join(', ');
 
+                  logger.info('Inserting property with columns: ' + columns);
                   const propResult = await pool.query(`
                     INSERT INTO properties (${columns})
                     VALUES (${placeholders})
-                    RETURNING id
+                    RETURNING *
                   `, values);
 
-                  const newId = propResult.rows[0].id;
+                  const newRecord = propResult.rows[0];
+                  logger.info('Inserted property with ID: ' + newRecord.id);
 
                   // Save URLs
                   if (uploadedUrls.length > 0) {
+                    logger.info('Inserting ' + uploadedUrls.length + ' images');
                     const imgPlaceholders = uploadedUrls.map((_, i) => `($1, $${i+2}, ${i === 0})`).join(', ');
                     await pool.query(`
                       INSERT INTO property_images (property_id, url, is_main)
                       VALUES ${imgPlaceholders}
-                    `, [newId, ...uploadedUrls]);
+                    `, [newRecord.id, ...uploadedUrls]);
+                    logger.info('Images inserted');
+                  } else {
+                    logger.info('No images to insert');
                   }
 
-                  request.payload = {};
-                  request.record = { params: { id: newId } };
+                  // Return AdminJS-compatible response
+                  return {
+                    record: {
+                      id: newRecord.id,
+                      params: newRecord,
+                    },
+                    notice: { message: 'Property created successfully', type: 'success' },
+                    redirectUrl: context.admin.options.rootPath + '/resources/properties/record/' + newRecord.id + '/show'
+                  };
                 }
-                return request;
+
+                logger.info('Handler ended without processing');
+                return { notice: { message: 'Invalid request', type: 'error' } };
               },
             },
           },
@@ -205,6 +243,12 @@ AdminJS.registerAdapter({ Database, Resource });
               users: 'Admins',
               properties: 'Properties',
               neondb: 'Domfin DB',
+              System: 'System',
+              'Real Estate': 'Real Estate',
+              featured: {
+                true: 'Yes',
+                false: 'No'
+              },
             },
             properties: {
               title: 'Title',
@@ -213,12 +257,25 @@ AdminJS.registerAdapter({ Database, Resource });
               price: 'Price (KSh)',
               neighborhood: 'Neighborhood',
               images_upload: 'Upload Images from Computer',
+              short_description: 'Short Description',
+              currency: 'Currency',
+              property_type: 'Property Type',
+              listing_type: 'Listing Type',
+              status: 'Status',
+              location: 'Location',
+              address: 'Address',
+              latitude: 'Latitude',
+              longitude: 'Longitude',
+              year_built: 'Year Built',
+              featured: 'Featured'
             },
           },
         },
       },
     },
   });
+
+  await admin.watch();  // For development bundling
 
   const adminRouter = AdminJSExpress.buildAuthenticatedRouter(admin, {
     authenticate: async (email, password) => {
@@ -230,12 +287,22 @@ AdminJS.registerAdapter({ Database, Resource });
       return false;
     },
     cookiePassword: process.env.JWT_SECRET || 'fallback-secret-change-me',
-    resave: false,
-    saveUninitialized: false,
+    resave: true,
+    saveUninitialized: true,
   });
 
-  // Apply multer to AdminJS routes for file parsing
-  app.use(admin.options.rootPath, upload.any(), adminRouter);
+  // Apply multer with logging
+  app.use(admin.options.rootPath, (req, res, next) => {
+    logger.info('Admin route hit: ' + req.path);
+    next();
+  }, upload.any(), (req, res, next) => {
+    if (req.files) {
+      logger.info('Multer parsed ' + req.files.length + ' files');
+    } else {
+      logger.info('Multer parsed no files');
+    }
+    next();
+  }, adminRouter);
 
   const PORT = process.env.PORT || 3000;
   app.listen(PORT, () => {
