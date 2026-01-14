@@ -20,16 +20,27 @@ const login = async (req, res) => {
   }
 };
 
-// Initial setup: Run once to create admin if not exists
+// Initial setup: Run once to create admin if not exists, with retry for timeout
 async function setupAdmin() {
   const email = process.env.ADMIN_EMAIL;
   const password = process.env.ADMIN_PASSWORD;
   const hash = await bcrypt.hash(password, 10);
 
-  await pool.query(`
-    INSERT INTO users (email, password_hash, full_name, role) 
-    VALUES ($1, $2, $3, $4) ON CONFLICT (email) DO NOTHING
-  `, [email, hash, 'Admin', 'admin']);
+  let retries = 3;
+  while (retries > 0) {
+    try {
+      await pool.query(`
+        INSERT INTO users (email, password_hash, full_name, role) 
+        VALUES ($1, $2, $3, $4) ON CONFLICT (email) DO NOTHING
+      `, [email, hash, 'Admin', 'admin']);
+      return; // Success
+    } catch (err) {
+      retries--;
+      console.error('Setup retry failed:', err.message);
+      await new Promise(resolve => setTimeout(resolve, 5000)); // Wait 5s
+    }
+  }
+  console.error('Failed to setup admin after retries');
 }
 
 export { login, setupAdmin };
