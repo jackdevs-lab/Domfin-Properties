@@ -1,3 +1,4 @@
+// domfin-backend/src/routes/propertyRoutes.js
 import express from 'express';
 import { getProperties, getPropertyById, createProperty, updateProperty, deleteProperty } from '../controllers/propertyController.js';
 import { authMiddleware } from '../middleware/auth.js';
