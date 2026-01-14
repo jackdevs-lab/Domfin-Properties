@@ -1,3 +1,4 @@
+// domfin-backend/src/controllers/propertyController.js
 import pool from '../config/db.js';
 import { validationResult } from 'express-validator';
 import cloudinary from 'cloudinary';
@@ -58,9 +59,12 @@ const createProperty = async (req, res) => {
 
   const { title, slug, status, listing_type, property_type, price, bedrooms, bathrooms, neighborhood, description } = req.body;
   const images = req.files ? await Promise.all(req.files.map(async (file) => {
-    const result = await cloudinary.uploader.upload(file.path);
-    return result.secure_url;
-  })) : [];
+  const result = await new Promise((resolve, reject) => {
+    const stream = cloudinary.v2.uploader.upload_stream({ folder: 'domfin-properties' }, (error, result) => error ? reject(error) : resolve(result));
+    stream.end(file.buffer);
+  });
+  return result.secure_url;
+})) : [];
 
   try {
     const result = await pool.query(`
