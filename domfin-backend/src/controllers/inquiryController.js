@@ -1,3 +1,4 @@
+// domfin-backend/src/controllers/inquiryController.js
 import pool from '../config/db.js';
 import { validationResult } from 'express-validator';
 
