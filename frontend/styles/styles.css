@@ -1443,3 +1443,144 @@ footer {
     right: 15px;
   }
 }
+/* ────────────────────────────────────────
+   Development Overlay + Glassmorphism
+───────────────────────────────────────── */
+
+.dev-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;           /* way above everything else */
+  pointer-events: auto;     /* overlay itself can receive events */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(20, 30, 60, 0.15);   /* subtle tint — adjust darkness */
+  backdrop-filter: blur(12px) saturate(1.2);   /* the magic glass effect */
+  -webkit-backdrop-filter: blur(12px) saturate(1.2);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow-y: auto;         /* in case message is very long */
+}
+
+.glass-panel {
+  pointer-events: auto;     /* only content inside glass is interactive */
+  max-width: 90%;
+  width: 700px;
+  padding: 3.5rem 2.5rem;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.25),
+    inset 0 0 20px rgba(255, 255, 255, 0.04);
+  text-align: center;
+  color: #f0f4ff;
+}
+
+.message-content h1 {
+  font-size: 3.8rem;
+  margin: 0 0 1.5rem;
+  letter-spacing: -1px;
+  line-height: 1.1;
+}
+
+.message-content p {
+  font-size: 1.35rem;
+  opacity: 0.9;
+  margin: 0 0 2rem;
+}
+
+/* Prevent clicks on everything UNDER the overlay */
+body:has(.dev-overlay) .navbar,
+body:has(.dev-overlay) .hero,
+body:has(.dev-overlay) section,
+body:has(.dev-overlay) footer,
+body:has(.dev-overlay) .call-now {
+  pointer-events: none;     /* blocks interaction with real content */
+}
+
+/* ── Fun Animations ───────────────────────────────────── */
+
+.bounce-text {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.15em;
+}
+
+.bounce-text span {
+  display: inline-block;
+  animation: bounce 1.6s infinite ease-in-out both;
+}
+
+.bounce-text span:nth-child(1)  { animation-delay: 0.0s; }
+.bounce-text span:nth-child(2)  { animation-delay: 0.08s; }
+.bounce-text span:nth-child(3)  { animation-delay: 0.16s; }
+.bounce-text span:nth-child(4)  { animation-delay: 0.24s; }
+.bounce-text span:nth-child(5)  { animation-delay: 0.32s; }
+.bounce-text span:nth-child(6)  { animation-delay: 0.40s; }
+.bounce-text span:nth-child(7)  { animation-delay: 0.48s; }
+.bounce-text span:nth-child(8)  { animation-delay: 0.56s; }
+.bounce-text span:nth-child(9)  { animation-delay: 0.64s; }
+.bounce-text span:nth-child(10) { animation-delay: 0.72s; }
+/* ... add more if needed for longer text */
+
+@keyframes bounce {
+  0%, 100%   { transform: translateY(0) scale(1); }
+  50%        { transform: translateY(-18px) scale(1.05); }
+}
+
+/* Gentle typing / fade-in line */
+.typing-line {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid #4cc9f0;
+  animation: typing 4s steps(40, end) forwards, blink-caret 0.8s step-end infinite;
+  max-width: 0;
+}
+
+@keyframes typing {
+  from { max-width: 0; }
+  to   { max-width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to   { border-color: transparent; }
+  50%        { border-color: #4cc9f0; }
+}
+
+/* Bouncing loading dots */
+.fun-dots {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.fun-dots span {
+  width: 14px;
+  height: 14px;
+  background: #4cc9f0;
+  border-radius: 50%;
+  animation: bounce-dot 1.4s infinite ease-in-out both;
+}
+
+.fun-dots span:nth-child(1) { animation-delay: -0.32s; }
+.fun-dots span:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes bounce-dot {
+  0%, 80%, 100% { transform: scale(0); opacity: 0.3; }
+  40%           { transform: scale(1); opacity: 1; }
+}
+
+/* Optional: subtle float animation on whole panel */
+.glass-panel {
+  animation: float 7s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
+}
