@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domfin Properties | Premium Real Estate in Nairobi, Kenya</title>
+    <link rel="icon" type="image/png" href="images/Domfin (1).png">
+    <meta name="description" content="Find your dream home in Nairobi's best neighborhoods. Browse apartments and houses for sale and rent in Westlands, Kilimani, Kileleshwa, and Lavington.">
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles/styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://via.placeholder.com/32/007bff/ffffff?text=RH">
+</head>
+<body>
+    <div class="dev-overlay">
+  <div class="glass-panel">
+    <div class="message-content">
+      <h1 class="bounce-text">
+        <span>U</span><span>n</span><span>d</span><span>e</span><span>r</span>
+        <span> </span>
+        <span>D</span><span>e</span><span>v</span><span>e</span><span>l</span><span>o</span><span>p</span><span>m</span><span>e</span><span>n</span><span>t</span>
+      </h1>
+      
+      <p class="typing-line">This site is under construction... check back soon! 🏗️✨</p>
+      
+      <div class="fun-dots">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</div>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <img src="images/Domfin (1).png" alt="Domfin Properties Limited">
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="properties.html">Properties</a></li>
+                    <li><a href="#neighborhoods">Neighborhoods</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+        <div class="mobile-menu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="properties.html">Properties</a></li>
+                <li><a href="#neighborhoods">Neighborhoods</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+    <div class="hero-background"></div>
+    <div class="container">
+        <h2>Domfin Properties</h2>
+        <p>Browse our extensive collection of apartments and homes for sale in Nairobi's most desirable neighborhoods.</p>
+        <div class="buttons">
+            <a href="properties.html" class="btn">Properties</a>
+            <a href="contact.html" class="btn">Enquire</a>
+        </div>
+    </div><br><br><br>
+    </section>
+
+    <section class="filter-section hero-filter">
+        <h2 class="mb-3">Filter Properties</h2>
+        <form class="filter-form">
+            <div class="filter-group">
+                <label for="neighborhood">Neighborhood</label>
+                <select id="neighborhood" name="neighborhood">
+                    <option value="">All Neighborhoods</option>
+                    <option value="westlands">Westlands</option>
+                    <option value="kilimani">Kilimani</option>
+                    <option value="kileleshwa">Kileleshwa</option>
+                    <option value="lavington">Lavington</option>
+                    <option value="karen">Karen</option>
+                    <option value="runda">Runda</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="bedrooms">Bedrooms</label>
+                <select id="bedrooms" name="bedrooms">
+                    <option value="">Any</option>
+                    <option value="1">1 Bedroom</option>
+                    <option value="2">2 Bedrooms</option>
+                    <option value="3">3 Bedrooms</option>
+                    <option value="4+">4+ Bedrooms</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="price">Price Range (KSh)</label>
+                <select id="price" name="price">
+                    <option value="">Any Price</option>
+                    <option value="0-5">Under 5M</option>
+                    <option value="5-10">5M - 10M</option>
+                    <option value="10-20">10M - 20M</option>
+                    <option value="20-50">20M - 50M</option>
+                    <option value="50-100">50M - 100M</option>
+                    <option value="100-1000">100M+</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="type">Property Type</label>
+                <select id="type" name="type">
+                    <option value="">Any Type</option>
+                    <option value="sale">For Sale</option>
+                    <option value="rent">For Rent</option>
+                </select>
+            </div>
+            
+            <div class="filter-group buttons-group">
+                <button type="submit" class="btn">
+                    <i class="fas fa-filter"></i> Apply
+                </button>
+                <button type="button" class="btn btn-outline">
+                    <i class="fas fa-redo"></i> Reset
+                </button>
+            </div>
+        </form>
+        
+        <!-- Optional: Advanced filters toggle -->
+        <div class="filter-toggle">
+            <button type="button">
+                <i class="fas fa-chevron-down"></i> Show Advanced Filters
+            </button>
+        </div>
+        
+        <!-- Optional: Advanced filters section (hidden by default) -->
+        <div class="advanced-filters" style="display: none;">
+            <div class="filter-group">
+                <label for="bathrooms">Bathrooms</label>
+                <select id="bathrooms" name="bathrooms">
+                    <option value="">Any</option>
+                    <option value="1">1+</option>
+                    <option value="2">2+</option>
+                    <option value="3">3+</option>
+                    <option value="4">4+</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="size">Min. Size (sqm)</label>
+                <select id="size" name="size">
+                    <option value="">Any Size</option>
+                    <option value="50">50+ sqm</option>
+                    <option value="100">100+ sqm</option>
+                    <option value="150">150+ sqm</option>
+                    <option value="200">200+ sqm</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="year">Year Built</label>
+                <select id="year" name="year">
+                    <option value="">Any Year</option>
+                    <option value="2020">2020+</option>
+                    <option value="2015">2015+</option>
+                    <option value="2010">2010+</option>
+                    <option value="2000">2000+</option>
+                </select>
+            </div>
+        </div>
+    </section>
+</section>
+    
+    <section>
+                <h2 class="mb-3">Featured Properties</h2>
+                <div class="property-grid">
+                    <!-- Property 1 -->
+                    <div class="property-card" data-neighborhood="westlands" data-bedrooms="2" data-price="7.5" data-type="sale">
+                        <img src="images/p1.webp" alt="Westlands Apartment 1" class="property-image" loading="lazy">
+                        <div class="property-content">
+                            <h3 class="property-title">Modern 2BR in Westlands</h3>
+                            <p class="property-location">Westlands, Nairobi</p>
+                            <div class="property-features">
+                                <span><i class="fas fa-bed"></i> 2 Bed</span>
+                                <span><i class="fas fa-bath"></i> 2 Bath</span>
+                                <span><i class="fas fa-ruler-combined"></i> 85 sqm</span>
+                            </div>
+                            <p class="property-price">KSh 7.5M</p>
+                            <span class="text-secondary text-bold">For Sale</span>
+                            <a href="property-detail.html" class="btn mt-2">View Details</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Property 2 -->
+                    <div class="property-card" data-neighborhood="kilimani" data-bedrooms="3" data-price="12" data-type="sale">
+                        <img src="images/p2.jpg" alt="Kilimani Apartment 1" class="property-image" loading="lazy">
+                        <div class="property-content">
+                            <h3 class="property-title">Luxury 3BR in Kilimani</h3>
+                            <p class="property-location">Kilimani, Nairobi</p>
+                            <div class="property-features">
+                                <span><i class="fas fa-bed"></i> 3 Bed</span>
+                                <span><i class="fas fa-bath"></i> 3 Bath</span>
+                                <span><i class="fas fa-ruler-combined"></i> 120 sqm</span>
+                            </div>
+                            <p class="property-price">KSh 12M</p>
+                            <span class="text-secondary text-bold">For Sale</span>
+                            <a href="property-detail.html" class="btn mt-2">View Details</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Property 3 -->
+                    <div class="property-card" data-neighborhood="kileleshwa" data-bedrooms="4" data-price="25" data-type="sale">
+                        <img src="images/p3.jpeg" alt="Kileleshwa House 1" class="property-image" loading="lazy">
+                        <div class="property-content">
+                            <h3 class="property-title">Family House in Kileleshwa</h3>
+                            <p class="property-location">Kileleshwa, Nairobi</p>
+                            <div class="property-features">
+                                <span><i class="fas fa-bed"></i> 4 Bed</span>
+                                <span><i class="fas fa-bath"></i> 4 Bath</span>
+                                <span><i class="fas fa-ruler-combined"></i> 250 sqm</span>
+                            </div>
+                            <p class="property-price">KSh 25M</p>
+                            <span class="text-secondary text-bold">For Sale</span>
+                            <a href="property-detail.html" class="btn mt-2">View Details</a>
+                        </div>
+                    </div>
+    </div>
+    </section>
+    <!-- 
+    <section class="container">
+        <h2 class="text-center mb-4">Promotional Projects</h2>
+        <div class="property-grid">
+            
+            <div class="property-card">
+                <img src="images/ivy.jpg" alt="IVY PARK RESIDENCE" class="property-image" loading="lazy">
+                <div class="property-content">
+                    <h3 class="property-title">IVY PARK RESIDENCE</h3>
+                    <p class="property-location">Westlands, Nairobi</p>
+                    <p>Luxury apartments with state-of-the-art amenities in the heart of Westlands.</p>
+                    <button class="btn btn-secondary mt-2">View Details</button>
+                </div>
+            </div>
+            
+            <div class="property-card">
+                <img src="images/serene.jpeg" alt="Kilimani Heights" class="property-image" loading="lazy">
+                <div class="property-content">
+                    <h3 class="property-title">Kilimani Heights</h3>
+                    <p class="property-location">Kilimani, Nairobi</p>
+                    <p>Modern apartments offering panoramic views of Nairobi cityscape.</p>
+                    <button class="btn btn-secondary mt-2">View Details</button>
+                </div>
+            </div>
+            
+            <div class="property-card">
+                <img src="images/Pandora.webp" alt="Lavington Villas" class="property-image" loading="lazy">
+                <div class="property-content">
+                    <h3 class="property-title">Lavington Villas</h3>
+                    <p class="property-location">Lavington, Nairobi</p>
+                    <p>Spacious family homes in a secure gated community with premium amenities.</p>
+                    <button class="btn btn-secondary mt-2">View Details</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    -->
+
+    <!-- Slider/Neighborhoods -->
+    <section class="slider">
+        <div class="container">
+            <h2 class="text-center mb-4">Explore Neighborhoods</h2>
+            <div class="slider-container">
+                <div class="slider-track">
+                    <div class="slide">
+                        <img src="images/asset.jpeg" alt="Westlands Nairobi" loading="lazy">
+                        <h3>Westlands</h3>
+                        <p>Upscale commercial and residential area known for its shopping malls, restaurants, and nightlife.</p>
+                    </div>
+                    <div class="slide">
+                        <img src="images/asset1.jpg" alt="Kilimani Nairobi" loading="lazy">
+                        <h3>Kilimani</h3>
+                        <p>Popular residential area with modern apartments, trendy cafes, and excellent amenities.</p>
+                    </div>
+                    <div class="slide">
+                        <img src="images/asset2.jpeg" alt="Kileleshwa Nairobi" loading="lazy">
+                        <h3>Kileleshwa</h3>
+                        <p>Quiet, tree-lined streets with luxurious homes and proximity to the city center.</p>
+                    </div>
+                </div>
+                <button class="slider-btn prev"><i class="fas fa-arrow-left"></i></button>
+                <button class="slider-btn next"><i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Search -->
+    <section class="quick-search container">
+        <h2 class="text-center mb-2">Quick Search</h2>
+        <p class="text-center mb-4">Find properties by number of bedrooms</p>
+        <div class="quick-search-buttons">
+            <button class="btn">1 Bedroom</button>
+            <button class="btn">2 Bedrooms</button>
+            <button class="btn">3 Bedrooms</button>
+            <button class="btn">4+ Bedrooms</button>
+            <button class="btn">Studio</button>
+            <button class="btn">Penthouse</button>
+        </div>
+    </section>
+
+    <!-- Best Selling Projects -->
+    <section class="container">
+        <h2 class="mb-4">Best Selling Projects</h2>
+        <div class="property-grid">
+            <!-- Properties will be loaded here -->
+            <div class="property-card" data-neighborhood="Westlands" data-bedrooms="2" data-price="7.5" data-type="apartment">
+                <img src="images/ivy.jpg" alt="Modern Apartment Westlands" class="property-image" loading="lazy">
+                <div class="property-content">
+                    <h3 class="property-title">Modern Apartment in Westlands</h3>
+                    <p class="property-location">Westlands, Nairobi</p>
+                    <div class="property-features">
+                        <span><i class="fas fa-bed"></i> 2 Bed</span>
+                        <span><i class="fas fa-bath"></i> 2 Bath</span>
+                        <span><i class="fas fa-ruler-combined"></i> 85 sqm</span>
+                    </div>
+                    <p class="property-price">KSh 7.5M</p>
+                    <a href="property-detail.html" class="btn">View More</a>
+                </div>
+            </div>
+            
+            <div class="property-card" data-neighborhood="Kilimani" data-bedrooms="3" data-price="12" data-type="apartment">
+                <img src="images/p5.jpeg" alt="Luxury Apartment Kilimani" class="property-image" loading="lazy">
+                <div class="property-content">
+                    <h3 class="property-title">Luxury Apartment in Kilimani</h3>
+                    <p class="property-location">Kilimani, Nairobi</p>
+                    <div class="property-features">
+                        <span><i class="fas fa-bed"></i> 3 Bed</span>
+                        <span><i class="fas fa-bath"></i> 3 Bath</span>
+                        <span><i class="fas fa-ruler-combined"></i> 120 sqm</span>
+                    </div>
+                    <p class="property-price">KSh 12M</p>
+                    <a href="property-detail.html" class="btn">View More</a>
+                </div>
+            </div>
+            
+            <div class="property-card" data-neighborhood="Kileleshwa" data-bedrooms="4" data-price="25" data-type="house">
+                <img src="images/asset2.jpeg" alt="Family House Kileleshwa" class="property-image" loading="lazy">
+                <div class="property-content">
+                    <h3 class="property-title">Family House in Kileleshwa</h3>
+                    <p class="property-location">Kileleshwa, Nairobi</p>
+                    <div class="property-features">
+                        <span><i class="fas fa-bed"></i> 4 Bed</span>
+                        <span><i class="fas fa-bath"></i> 4 Bath</span>
+                        <span><i class="fas fa-ruler-combined"></i> 250 sqm</span>
+                    </div>
+                    <p class="property-price">KSh 25M</p>
+                    <a href="property-detail.html" class="btn">View More</a>
+                </div>
+            </div>
+            
+    </div>
+    </section>
+
+    <!-- Join Our Family -->
+    <section class="container text-center" style="padding: 4rem 0;">
+        <h2 class="mb-2">Join Our Family</h2>
+        <p class="mb-4">Over 500 families have found their dream homes with us. Share your experience too!</p>
+        <a href="#" class="btn btn-secondary">
+            <i class="fab fa-google"></i> Leave a Review
+        </a>
+    </section>
+    <section class="metrics">
+        <div class="container">
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <i class="fas fa-users"></i>
+                    <h3>500+</h3>
+                    <p>Happy Families</p>
+                </div>
+                <div class="metric-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>5+</h3>
+                    <p>Years Experience</p>
+                </div>
+                <div class="metric-item">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>15%</h3>
+                    <p>Average ROI</p>
+                </div>
+                <div class="metric-item">
+                    <i class="fas fa-home"></i>
+                    <h3>200+</h3>
+                    <p>Properties Listed</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Neighborhoods Section -->
+    <section id="neighborhoods" class="container">
+        <h2 class="mb-4">Popular Neighborhoods</h2>
+        <div class="neighborhood-grid">
+            <div class="neighborhood-card">
+                <img src="images/pp8.jpeg" alt="Westlands" loading="lazy">
+                <div class="neighborhood-overlay">
+                    <h3>Westlands</h3>
+                    <p>Upscale commercial and residential hub</p>
+                </div>
+            </div>
+            <div class="neighborhood-card">
+                <img src="images/pp9.jpeg" alt="Kilimani" loading="lazy">
+                <div class="neighborhood-overlay">
+                    <h3>Kilimani</h3>
+                    <p>Trendy apartments and vibrant lifestyle</p>
+                </div>
+            </div>
+            <div class="neighborhood-card">
+                <img src="images/pp10.jpeg" alt="Kileleshwa" loading="lazy">
+                <div class="neighborhood-overlay">
+                    <h3>Kileleshwa</h3>
+                    <p>Quiet luxury and spacious homes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="container">
+        <h2 class="mb-4">What's New & Trending</h2>
+        <div class="blog-grid">
+            <div class="blog-card">
+                <img src="images/real.jpg" alt="Real Estate Trends" class="property-image" loading="lazy">
+                <div class="blog-content">
+                    <h3>Nairobi Real Estate Market Trends 2024</h3>
+                    <div class="blog-meta">
+                        <span>5 min read</span>
+                        <span>2 days ago</span>
+                    </div>
+                    <p>Discover the latest trends shaping Nairobi's real estate market and what to expect in 2024.</p>
+                    <a href="#" class="btn mt-2">Read More</a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <img src="images/real2.webp" alt="Home Investment" class="property-image" loading="lazy">
+                <div class="blog-content">
+                    <h3>Maximizing ROI on Property Investments</h3>
+                    <div class="blog-meta">
+                        <span>7 min read</span>
+                        <span>1 week ago</span>
+                    </div>
+                    <p>Learn how to get the best returns on your real estate investments in Nairobi.</p>
+                    <a href="#" class="btn mt-2">Read More</a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <img src="images/real3.jpg" alt="Interior Design" class="property-image" loading="lazy">
+                <div class="blog-content">
+                    <h3>Modern Interior Design for Nairobi Homes</h3>
+                    <div class="blog-meta">
+                        <span>4 min read</span>
+                        <span>2 weeks ago</span>
+                    </div>
+                    <p>Get inspired with modern interior design ideas perfect for Nairobi homes.</p>
+                    <a href="#" class="btn mt-2">Read More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Domfin Properties</h3>
+                    <p>Your trusted partner in finding the perfect home in Nairobi's most desirable neighborhoods.</p>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="properties.html">Properties</a></li>
+                        <li><a href="#neighborhoods">Neighborhoods</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-phone"></i> +254 105 772 200</p>
+                    <p><i class="fas fa-envelope"></i> info@domfinproperties.co.ke</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Domfin Properties. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Call Now Button -->
+    <a href="tel:+254105772200" class="call-now" aria-label="Call Now">
+        <i class="fas fa-phone"></i>
+    </a>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+</body>
+</html>
